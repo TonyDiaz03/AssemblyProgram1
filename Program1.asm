@@ -8,6 +8,8 @@ subResult: .asciiz "\nThe subtraction of the integers is "
 mulResult: .asciiz "\nThe multiplication of the integers is "
 divResult: .asciiz "\nThe division of the integers is "
 divRemainder: .asciiz " with the remainder of "
+equalInputs: .asciiz "\nUser inputs are the same\n"
+unequalInputs: .asciiz "\nUser inputs are different\n"
     
 .text
 main:
@@ -112,7 +114,22 @@ main:
     li $v0, 1
     mfhi $a0
     syscall
-    
+
+    # Check if $s0 is equal to $s1 and branch depending on the result
+    beq $s0, $s1, equal
+        # Print the string to let the user know what the inputs are different
+        li $v0, 4
+        la $a0, unequalInputs
+        syscall
+        j exitProgram       # Jump to exitProgram so that the equal code block is not executed
+
+    equal:
+        # Print the string to let the user know what the inputs are equal
+        li $v0, 4
+        la $a0, equalInputs
+        syscall
+
     # Exit program
-    li $v0, 10
-    syscall
+    exitProgram:
+        li $v0, 10
+        syscall
