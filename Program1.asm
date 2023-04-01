@@ -1,3 +1,9 @@
+#Name: Tony Diaz, Xavier Felix, Tanay Shah, Clifton Williams
+#Date: April 2, 2023
+#Objective: Ask user for 2 inputs
+#show the addition, subtraction, multiplication and division of inputs
+#Check if input 1 and 2 are equal
+
 .data
 input1: .asciiz "Enter the first integer: "
 input2: .asciiz "Enter the second integer: "
